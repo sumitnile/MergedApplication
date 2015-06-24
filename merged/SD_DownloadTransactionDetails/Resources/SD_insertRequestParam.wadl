@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam" xmlns:ns0="http://www.insertReqParam.org" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="SD_insertRequestParam">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.insertReqParam.org" schemaLocation="../Schema/SD_insertReqParam.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="GET" soa:wsdlOperation="insertRequestParam">
+            <request>
+               <param name="requestId" style="query" soa:expression="$msg.request/ns0:requestId" default="" type="xsd:decimal"/>
+               <param name="comments" style="query" soa:expression="$msg.request/ns0:comments" default="" type="xsd:string"/>
+               <param name="erpSystemId" style="query" soa:expression="$msg.request/ns0:erpSystemId" default="" type="xsd:decimal"/>
+               <param name="txnIdSearchTerm" style="query" soa:expression="$msg.request/ns0:txnIdSearchTerm" default="" type="xsd:string"/>
+               <param name="startDate" style="query" soa:expression="$msg.request/ns0:startDate" default="" type="xsd:dateTime"/>
+               <param name="endDate" style="query" soa:expression="$msg.request/ns0:endDate" default="" type="xsd:dateTime"/>
+               <param name="paymentType" style="query" soa:expression="$msg.request/ns0:paymentType" default="" type="xsd:string"/>
+               <param name="sellerCode" style="query" soa:expression="$msg.request/ns0:sellerCode" default="" type="xsd:string"/>
+               <param name="fileType" style="query" soa:expression="$msg.request/ns0:fileType" default="" type="xsd:string"/>
+               <param name="requestStatus" style="query" soa:expression="$msg.request/ns0:requestStatus" default="" type="xsd:string"/>
+               <param name="reportPath" style="query" soa:expression="$msg.request/ns0:reportPath" default="" type="xsd:string"/>
+               <param name="reportType" style="query" soa:expression="$msg.request/ns0:reportType" default="" type="xsd:string"/>
+               <param name="created" style="query" soa:expression="$msg.request/ns0:created" default="" type="xsd:dateTime"/>
+               <param name="lastUpdated" style="query" soa:expression="$msg.request/ns0:lastUpdated" default="" type="xsd:dateTime"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:insertParamResponse" xmlns:cns="http://www.insertReqParam.org"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

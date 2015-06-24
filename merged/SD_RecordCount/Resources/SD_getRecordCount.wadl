@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/SD_PaymentPanel_App/SD_RecordCount/SD_getRecordCount" xmlns:ns0="http://www.RecordCount.org" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="SD_getRecordCount">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.RecordCount.org" schemaLocation="../Schema/SD_RecordCount.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/">
+         <method name="GET" soa:wsdlOperation="getRecordCont">
+            <request>
+               <param name="processName" style="query" soa:expression="$msg.request/ns0:processName" default="" type="xsd:string"/>
+               <param name="recordStatus" style="query" soa:expression="$msg.request/ns0:recordStatus" default="" type="xsd:string"/>
+               <param name="lastUpdated" style="query" soa:expression="$msg.request/ns0:lastUpdated" default="" type="xsd:dateTime"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:RecordCountoutput" xmlns:cns="http://www.RecordCount.org"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

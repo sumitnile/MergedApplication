@@ -1,0 +1,14 @@
+<adapter-config name="SD_insertRequestParam_BS" adapter="db" wsdlLocation="SD_insertRequestParam_BS.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SnapDeal_Dev_DB" location="eis/db/snap_erp_uat"/>
+  <endpoint-interaction portType="SD_insertRequestParam_BS_ptt" operation="insert">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="SD_insertRequestParam_BS.XxsdTxnInvoiceRequest"/>
+      <property name="DmlType" value="insert"/>
+      <property name="MappingsMetaDataURL" value="SD_insertRequestParam_BS-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+      <property name="DetectOmissions" value="true"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

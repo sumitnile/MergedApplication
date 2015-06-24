@@ -1,0 +1,96 @@
+<wsdl:definitions
+     name="SettledTrxBusinessService"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_SettledTrxDetails/SettledTrxBusinessService"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_SettledTrxDetails/SettledTrxBusinessService"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SettledTrxBusinessService_plt" >
+    <plt:role name="SettledTrxBusinessService_role" >
+      <plt:portType name="tns:SettledTrxBusinessService_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" schemaLocation="SettledTrxBusinessService.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="SettledTrxBusinessServiceInput_msg">
+        <wsdl:part name="SettledTrxBusinessServiceInput_msg" element="db:SettledTrxBusinessServiceInput"/>
+    </wsdl:message>
+    <wsdl:message name="SettledTrxBusinessServiceOutputCollection_msg">
+        <wsdl:part name="SettledTrxBusinessServiceOutputCollection" element="db:SettledTrxBusinessServiceOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="SettledTrxBusinessService_ptt">
+        <wsdl:operation name="SettledTrxBusinessService">
+            <wsdl:input message="tns:SettledTrxBusinessServiceInput_msg"/>
+            <wsdl:output message="tns:SettledTrxBusinessServiceOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

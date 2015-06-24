@@ -1,0 +1,28 @@
+<wsdl:definitions
+     name="SD_insertRequestParam_BS"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam_BS"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam_BS"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/SD_insertRequestParam_BS"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="SD_insertRequestParam_BS_plt" >
+    <plt:role name="SD_insertRequestParam_BS_role" >
+      <plt:portType name="tns:SD_insertRequestParam_BS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/SD_insertRequestParam_BS" schemaLocation="SD_insertRequestParam_BS_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="XxsdTxnInvoiceRequestCollection_msg">
+        <wsdl:part name="XxsdTxnInvoiceRequestCollection" element="top:XxsdTxnInvoiceRequestCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="SD_insertRequestParam_BS_ptt">
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:XxsdTxnInvoiceRequestCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

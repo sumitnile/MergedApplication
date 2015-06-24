@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://xmlns.oracle.com/SD_PaymentPanel_App/SD_GetPaymentsDetails/SD_GetPaymentsDetails" xmlns:ns0="http://www.getPaymentsDetails.org" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="SD_GetPaymentsDetails">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.getPaymentsDetails.org" schemaLocation="../Schema/SD_getPaymentsDetails.xsd"/>
+        </xsd:schema>
+   </grammars>
+   <resources>
+      <resource path="/getPaymentsDetails">
+         <method name="GET" soa:wsdlOperation="GetPaymentsDetails">
+            <request>
+               <param name="lastUpdated" style="query" soa:expression="$msg.request/ns0:lastUpdated" default="" type="xsd:dateTime"/>
+               <param name="start" style="query" soa:expression="$msg.request/ns0:start" default="" type="xsd:integer"/>
+               <param name="pageSize" style="query" soa:expression="$msg.request/ns0:pageSize" default="" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:GetPaymentsDetails_OutputCollection" xmlns:cns="http://www.getPaymentsDetails.org"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

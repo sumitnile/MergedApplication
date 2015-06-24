@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_RecordCount/SD_Payment_RecordCount_BS" name="SD_Payment_RecordCount_BS-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="SD_Payment_RecordCount_BS.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_RecordCount/SD_Payment_RecordCount_BS"/>
+    <wsdl:binding name="SD_Payment_RecordCount_BS_ptt-binding" type="sd:SD_Payment_RecordCount_BS_ptt" xmlns:sd="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_RecordCount/SD_Payment_RecordCount_BS">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="SD_Payment_RecordCount_BS">
+            <soap:operation soapAction="SD_Payment_RecordCount_BS"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

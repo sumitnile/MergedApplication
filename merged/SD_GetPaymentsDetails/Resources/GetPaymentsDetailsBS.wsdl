@@ -1,0 +1,64 @@
+<wsdl:definitions
+     name="GetPaymentsDetailsBS"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_GetPaymentsDetails/GetPaymentsDetailsBS"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_GetPaymentsDetails/GetPaymentsDetailsBS"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="GetPaymentsDetailsBS_plt" >
+    <plt:role name="GetPaymentsDetailsBS_role" >
+      <plt:portType name="tns:GetPaymentsDetailsBS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="GetPaymentsDetailsBS_plt" >
+    <plt:role name="GetPaymentsDetailsBS_role" >
+      <plt:portType name="tns:GetPaymentsDetailsBS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="GetPaymentsDetailsBS_plt" >
+    <plt:role name="GetPaymentsDetailsBS_role" >
+      <plt:portType name="tns:GetPaymentsDetailsBS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="GetPaymentsDetailsBS_plt" >
+    <plt:role name="GetPaymentsDetailsBS_role" >
+      <plt:portType name="tns:GetPaymentsDetailsBS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="GetPaymentsDetailsBS_plt" >
+    <plt:role name="GetPaymentsDetailsBS_role" >
+      <plt:portType name="tns:GetPaymentsDetailsBS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS" schemaLocation="GetPaymentsDetailsBS.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS" schemaLocation="GetPaymentsDetailsBS.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS" schemaLocation="GetPaymentsDetailsBS.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS" schemaLocation="GetPaymentsDetailsBS.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS" schemaLocation="GetPaymentsDetailsBS.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="GetPaymentsDetailsBSInput_msg">
+        <wsdl:part name="GetPaymentsDetailsBSInput_msg" element="db:GetPaymentsDetailsBSInput"/>
+    </wsdl:message>
+    <wsdl:message name="GetPaymentsDetailsBSOutputCollection_msg">
+        <wsdl:part name="GetPaymentsDetailsBSOutputCollection" element="db:GetPaymentsDetailsBSOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="GetPaymentsDetailsBS_ptt">
+        <wsdl:operation name="GetPaymentsDetailsBS">
+            <wsdl:input message="tns:GetPaymentsDetailsBSInput_msg"/>
+            <wsdl:output message="tns:GetPaymentsDetailsBSOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

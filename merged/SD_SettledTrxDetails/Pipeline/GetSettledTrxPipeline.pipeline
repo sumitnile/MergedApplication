@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="SD_SettledTrxDetails/Resources/SD_GetSettledTrx"/>
+            <con:binding>
+                <con:name>SD_GetSettledTrx_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/SD_PaymentPanel_App/SD_SettledTrxDetails/SD_GetSettledTrx</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-a7d0215.32183501.0.14dd152f4e7.N7d41">
+            <con:stage id="_StageId-a7d0215.5a2f6760.0.14dd6d4f640.N7fdd" name="Java Callout For DateFormat">
+                <con:context>
+                    <con2:userNsDecl prefix="set" namespace="http://www.SettledTrx.org"/>
+                </con:context>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-a7d021c.N58c8019e.0.14e1f9bba05.N7fc5</con2:id>
+                        <con1:case id="_BranchId-a7d021c.N58c8019e.0.14e1f9bba05.N7fc4">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:boolExpr operator="or">
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$body/set:SettledTrxInput/set:lastUpdated</con2:leftPath>
+                                            <con2:rightPath>''</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$body/set:SettledTrxInput/set:start</con2:leftPath>
+                                            <con2:rightPath>''</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$body/set:SettledTrxInput/set:pageSize</con2:leftPath>
+                                            <con2:rightPath>''</con2:rightPath>
+                                        </con2:compExpr>
+                                    </con2:boolExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="temp">
+                                    <con2:id>_ActionId-a7d021c.N58c8019e.0.14e1f9bba05.N7fb6</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>xs:int(1)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:javaCallout varName="Callout_Output">
+                                <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fda</con2:id>
+                                <con1:archive ref="SD_SettledTrxDetails/Jars/DateConversion"/>
+                                <con1:className>DateConvert</con1:className>
+                                <con1:method>public static java.lang.String convert(java.lang.String)</con1:method>
+                                <con1:expr>
+                                    <con2:xqueryText>fn:string($body/set:SettledTrxInput/set:lastUpdated)</con2:xqueryText>
+                                </con1:expr>
+                                <con1:return-param-as-ref>false</con1:return-param-as-ref>
+                            </con1:javaCallout>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a7d0215.32183501.0.14dd152f4e7.N7d33" name="Input Validation and Service Call">
+                <con:context>
+                    <con2:userNsDecl prefix="set" namespace="http://www.SettledTrx.org"/>
+                </con:context>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7d32</con2:id>
+                        <con1:case id="_BranchId-a7d0215.32183501.0.14dd152f4e7.N7d31">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:boolExpr operator="or">
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$Callout_Output</con2:leftPath>
+                                            <con2:rightPath>'BlankNode'</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>xs:int($temp)</con2:leftPath>
+                                            <con2:rightPath>xs:int(1)</con2:rightPath>
+                                        </con2:compExpr>
+                                    </con2:boolExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="flag">
+                                    <con2:id>_ActionId-a7d021c.N58c8019e.0.14e1f9bba05.N7fad</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>xs:int(4)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-a7d021c.N58c8019e.0.14e1f9bba05.N7fb4">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:boolExpr operator="and">
+                                        <con2:compExpr operator="&lt;=">
+                                            <con2:leftPath>$body/set:SettledTrxInput/set:lastUpdated</con2:leftPath>
+                                            <con2:rightPath>fn:current-dateTime()</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator=">">
+                                            <con2:leftPath>$body/set:SettledTrxInput/set:start</con2:leftPath>
+                                            <con2:rightPath>xs:decimal(0)</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator=">">
+                                            <con2:leftPath>$body/set:SettledTrxInput/set:pageSize</con2:leftPath>
+                                            <con2:rightPath>xs:decimal(0)</con2:rightPath>
+                                        </con2:compExpr>
+                                    </con2:boolExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="RecordCount">
+                                    <con2:id>_ActionId-a7d0241.N5a044291.0.14e06a96a94.N7ffa</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>$body/set:SettledTrxInput/set:start+$body/set:SettledTrxInput/set:pageSize</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                                <con1:wsCallout>
+                                    <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7cfe</con2:id>
+                                    <con1:service ref="SD_SettledTrxDetails/SettledTrxBusinessService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                    <con1:operation>SettledTrxBusinessService</con1:operation>
+                                    <con1:request>
+                                        <con1:body wrapped="false">BS_INPUT</con1:body>
+                                    </con1:request>
+                                    <con1:response>
+                                        <con1:body wrapped="false">BS_OUTPUT</con1:body>
+                                    </con1:response>
+                                    <con1:requestTransform>
+                                        <con1:assign varName="BS_INPUT">
+                                            <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7d3a</con2:id>
+                                            <con1:expr>
+                                                <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<set:SettledTrxBusinessServiceInput xmlns:set="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService">
+<set:lastUpdated>',$Callout_Output,'</set:lastUpdated><set:start>',$body/set:SettledTrxInput/set:start,'</set:start><set:pageSize>',$RecordCount,'</set:pageSize></set:SettledTrxBusinessServiceInput>'))]]></con2:xqueryText>
+                                            </con1:expr>
+                                        </con1:assign>
+                                    </con1:requestTransform>
+                                    <con1:responseTransform/>
+                                </con1:wsCallout>
+                                <con1:assign varName="Flag">
+                                    <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7cf3</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>xs:decimal(1)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:ifThenElse>
+                                <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7cf7</con2:id>
+                                <con1:case id="_BranchId-a7d0215.32183501.0.14dd152f4e7.N7cf6">
+                                    <con1:condition>
+                                        <con2:xqueryConditionExpr>
+                                            <con2:compExpr operator=">">
+                                                <con2:leftPath>xs:dateTime($body/set:SettledTrxInput/set:lastUpdated)</con2:leftPath>
+                                                <con2:rightPath>fn:current-dateTime()</con2:rightPath>
+                                            </con2:compExpr>
+                                        </con2:xqueryConditionExpr>
+                                    </con1:condition>
+                                    <con1:actions>
+                                        <con1:assign varName="flag">
+                                            <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7cf0</con2:id>
+                                            <con1:expr>
+                                                <con2:xqueryText>xs:decimal(2)</con2:xqueryText>
+                                            </con1:expr>
+                                        </con1:assign>
+                                    </con1:actions>
+                                </con1:case>
+                                <con1:default>
+                                    <con1:assign varName="flag">
+                                        <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7ced</con2:id>
+                                        <con1:expr>
+                                            <con2:xqueryText>xs:decimal(3)</con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con1:default>
+                            </con1:ifThenElse>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a7d0215.32183501.0.14dd152f4e7.N7d40">
+            <con:stage id="_StageId-a7d0215.32183501.0.14dd152f4e7.N7d3e" name="Response ">
+                <con:context/>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7ce6</con2:id>
+                        <con1:case id="_BranchId-a7d0215.32183501.0.14dd152f4e7.N7ce5">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:compExpr operator="=">
+                                        <con2:leftPath>xs:decimal($flag)</con2:leftPath>
+                                        <con2:rightPath>xs:decimal(2)</con2:rightPath>
+                                    </con2:compExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace varName="body" contents-only="true">
+                                    <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7ce0</con2:id>
+                                    <con1:location>
+                                        <con2:xpathText>.</con2:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<tns:Settled_Transactions_OutputCollection xmlns:tns="http://www.SettledTrx.org">
+<tns:settled_Transactions_Output><tns:error>',fn:string('lastUpdated CanNot be Greater then Current Date'),'</tns:error></tns:settled_Transactions_Output></tns:Settled_Transactions_OutputCollection>'))]]></con2:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-a7d0215.32183501.0.14dd152f4e7.N7ce3">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:compExpr operator="=">
+                                        <con2:leftPath>xs:decimal($flag)</con2:leftPath>
+                                        <con2:rightPath>xs:decimal(3)</con2:rightPath>
+                                    </con2:compExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace varName="body" contents-only="true">
+                                    <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7cdd</con2:id>
+                                    <con1:location>
+                                        <con2:xpathText>.</con2:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<tns:Settled_Transactions_OutputCollection xmlns:tns="http://www.SettledTrx.org">
+<tns:settled_Transactions_Output><tns:error>',fn:string('start and pageSize value must be greater then zero'),'</tns:error></tns:settled_Transactions_Output></tns:Settled_Transactions_OutputCollection>'))]]></con2:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-a7d021c.N58c8019e.0.14e1f9bba05.N7fab">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:compExpr operator="=">
+                                        <con2:leftPath>xs:decimal($flag)</con2:leftPath>
+                                        <con2:rightPath>xs:decimal(4)</con2:rightPath>
+                                    </con2:compExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace varName="body" contents-only="true">
+                                    <con2:id>_ActionId-a7d021c.N58c8019e.0.14e1f9bba05.N7fa5</con2:id>
+                                    <con1:location>
+                                        <con2:xpathText>.</con2:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<tns:Settled_Transactions_OutputCollection xmlns:tns="http://www.SettledTrx.org">
+<tns:settled_Transactions_Output><tns:error>',fn:string('lastUpdated is Mandatory Field'),'</tns:error></tns:settled_Transactions_Output></tns:Settled_Transactions_OutputCollection>'))]]></con2:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7ca1</con2:id>
+                                <con1:location>
+                                    <con2:xpathText>.</con2:xpathText>
+                                </con1:location>
+                                <con1:expr>
+                                    <con2:xqueryText>$BS_OUTPUT</con2:xqueryText>
+                                </con1:expr>
+                            </con1:replace>
+                            <con1:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a7d0215.32183501.0.14dd152f4e7.N7c9e</con2:id>
+                                <con1:location>
+                                    <con2:xpathText>.</con2:xpathText>
+                                </con1:location>
+                                <con1:expr>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="SD_SettledTrxDetails/XSL/GetSettledTrxOutput"/>
+                                        <con2:input>$body/*</con2:input>
+                                    </con2:xsltTransform>
+                                </con1:expr>
+                            </con1:replace>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode">
+                <con:request>request-a7d0215.32183501.0.14dd152f4e7.N7d41</con:request>
+                <con:response>response-a7d0215.32183501.0.14dd152f4e7.N7d40</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.getPaymentsDetails.org"
+            targetNamespace="http://www.getPaymentsDetails.org" elementFormDefault="qualified">
+  <xsd:element name="GetPaymentsDetailsInput" type="GetPaymentsDetailsComplexInput">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="GetPaymentsDetailsComplexInput">
+    <xsd:sequence>
+      <xsd:element name="lastUpdated" type="xsd:dateTime" />
+      <xsd:element name="start" type="xsd:integer"/>
+      <xsd:element name="pageSize" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetPaymentsDetails_OutputCollection" type="GetPaymentsDetails_ComplexOutput"/>
+   <xsd:complexType name="GetPaymentsDetails_ComplexOutput">
+      <xsd:sequence>
+         <xsd:element name="GetPaymentsDetailsOutput" type="GetPaymentsDetailsComplexOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="GetPaymentsDetailsComplexOutput">
+    <xsd:sequence>
+      <xsd:element name="erpSystemId" type="xsd:string"/>
+      <xsd:element name="sellerCode" type="xsd:string"/>
+      <xsd:element name="amount" type="xsd:string"/>
+      <xsd:element name="paymentMode" type="xsd:string"/>
+      <xsd:element name="paymentDate" type="xsd:date"/>
+      <xsd:element name="paymentId" type="xsd:string"/>
+      <xsd:element name="completed" type="xsd:boolean"/>
+      <xsd:element name="transactionType" type="xsd:string"/>
+      <xsd:element name="transactionCount" type="xsd:string"/>
+      <xsd:element name="created" type="xsd:dateTime"/>
+      <xsd:element name="updated" type="xsd:dateTime"/>
+      <xsd:element name="requestId" type="xsd:string"/>
+      <xsd:element name="error" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Error" type="xsd:string"/>
+</xsd:schema>

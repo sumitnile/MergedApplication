@@ -1,0 +1,11 @@
+<adapter-config name="SettledTrxBusinessService" adapter="db" wsdlLocation="SettledTrxBusinessService.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SnapDeal_Dev_DB" location="eis/db/snap_erp_uat"/>
+  <endpoint-interaction portType="SettledTrxBusinessService_ptt" operation="SettledTrxBusinessService">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="SELECT transactionDate,suborderTxnId,transactionType,transactionReason,sellerCode,productName,sellerSku,webSalePrice,paidAmount,knockedOff,paymentDate,erpSystemId,action,created,updated from ( select m.SHIPPINGDATE AS transactionDate,m.SUBORDERTXNID AS suborderTxnId,m.TRANSACTIONTYPE AS transactionType,m.TRANSACTIONREASON AS transactionReason,m.SELLERCODE AS sellerCode,m.PRODUCTNAME AS productName,m.SELLERSKU AS sellerSku,m.WEBSALEPRICE AS webSalePrice,m.NETAMOUNT AS paidAmount,m.KNOCKEDOFF AS knockedOff,m.PAYMENTDATE AS paymentDate,m.ERPSYSTEMID AS erpSystemId,m.RECORD_STATUS AS action,m.CREATION_DATE AS created,m.LAST_UPDATE_DATE AS updated,rownum r  from xxsd_seller_trx_detail_tl m  where trunc(m.LAST_UPDATE_DATE)>=trunc(TO_DATE(#lastUpdated)) ) where r >= #start and r &lt; #pageSize"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

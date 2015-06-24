@@ -1,0 +1,40 @@
+<wsdl:definitions
+     name="SD_Unsettledtrx_RecordCount_BS"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_RecordCount/SD_Unsettledtrx_RecordCount_BS"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_RecordCount/SD_Unsettledtrx_RecordCount_BS"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/SD_Unsettledtrx_RecordCount_BS"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="SD_Unsettledtrx_RecordCount_BS_plt" >
+    <plt:role name="SD_Unsettledtrx_RecordCount_BS_role" >
+      <plt:portType name="tns:SD_Unsettledtrx_RecordCount_BS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+  <plt:partnerLinkType name="SD_Unsettledtrx_RecordCount_BS_plt" >
+    <plt:role name="SD_Unsettledtrx_RecordCount_BS_role" >
+      <plt:portType name="tns:SD_Unsettledtrx_RecordCount_BS_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_Unsettledtrx_RecordCount_BS" schemaLocation="SD_Unsettledtrx_RecordCount_BS.xsd" />
+      </schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_Unsettledtrx_RecordCount_BS" schemaLocation="SD_Unsettledtrx_RecordCount_BS.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="SD_Unsettledtrx_RecordCount_BSInput_msg">
+        <wsdl:part name="SD_Unsettledtrx_RecordCount_BSInput_msg" element="db:SD_Unsettledtrx_RecordCount_BSInput"/>
+    </wsdl:message>
+    <wsdl:message name="SD_Unsettledtrx_RecordCount_BSOutput_msg">
+        <wsdl:part name="SD_Unsettledtrx_RecordCount_BSOutput" element="db:SD_Unsettledtrx_RecordCount_BSOutput"/>
+    </wsdl:message>
+    <wsdl:portType name="SD_Unsettledtrx_RecordCount_BS_ptt">
+        <wsdl:operation name="SD_Unsettledtrx_RecordCount_BS">
+            <wsdl:input message="tns:SD_Unsettledtrx_RecordCount_BSInput_msg"/>
+            <wsdl:output message="tns:SD_Unsettledtrx_RecordCount_BSOutput_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

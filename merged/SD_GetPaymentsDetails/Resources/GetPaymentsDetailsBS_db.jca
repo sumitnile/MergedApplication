@@ -1,0 +1,11 @@
+<adapter-config name="GetPaymentsDetailsBS" adapter="db" wsdlLocation="GetPaymentsDetailsBS.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SnapDeal_Dev_DB" location="eis/db/snap_erp_uat"/>
+  <endpoint-interaction portType="GetPaymentsDetailsBS_ptt" operation="GetPaymentsDetailsBS">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="SELECT * from ( select m.ERPSYSTEMID,m.SELLERCODE,m.AMOUNT,m.PAYMENTMODE, m.PAYMENTDATE,m.PAYMENTID,m.COMPLETED,m.TRANSACTIONTYPE,m.TRANSACTIONCOUNT,m.CREATION_DATE,m.LAST_UPDATE_DATE, m.REQUEST_ID,rownum r   from xxsd_seller_payments_detail_tl m  where trunc(m.LAST_UPDATE_DATE)>=trunc(TO_DATE(#lastUpdated))  )where r >= #start and r &lt; #pageSize"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

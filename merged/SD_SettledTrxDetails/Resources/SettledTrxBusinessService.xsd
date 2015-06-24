@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/SettledTrxBusinessService" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="SettledTrxBusinessServiceInput" type="SettledTrxBusinessServiceInput"/>
+   <xs:complexType name="SettledTrxBusinessServiceInput">
+      <xs:sequence>
+         <xs:element name="lastUpdated" type="xs:string" nillable="true"/>
+         <xs:element name="start" type="xs:string" nillable="true"/>
+         <xs:element name="pageSize" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="SettledTrxBusinessServiceOutputCollection" type="SettledTrxBusinessServiceOutputCollection"/>
+   <xs:complexType name="SettledTrxBusinessServiceOutputCollection">
+      <xs:sequence>
+         <xs:element name="SettledTrxBusinessServiceOutput" type="SettledTrxBusinessServiceOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="SettledTrxBusinessServiceOutput">
+      <xs:sequence>
+         <xs:element name="transactionDate" type="xs:dateTime" nillable="true"/>
+         <xs:element name="suborderTxnId" type="xs:string" nillable="true"/>
+         <xs:element name="transactionType" type="xs:string" nillable="true"/>
+         <xs:element name="transactionReason" type="xs:string" nillable="true"/>
+         <xs:element name="sellerCode" type="xs:string" nillable="true"/>
+         <xs:element name="productName" type="xs:string" nillable="true"/>
+         <xs:element name="sellerSku" type="xs:string" nillable="true"/>
+         <xs:element name="webSalePrice" type="xs:decimal" nillable="true"/>
+         <xs:element name="paidAmount" type="xs:decimal" nillable="true"/>
+         <xs:element name="knockedOff" type="xs:string" nillable="true"/>
+         <xs:element name="paymentDate" type="xs:dateTime" nillable="true"/>
+         <xs:element name="erpSystemId" type="xs:decimal" nillable="true"/>
+         <xs:element name="action" type="xs:string" nillable="true"/>
+         <xs:element name="created" type="xs:dateTime" nillable="true"/>
+         <xs:element name="updated" type="xs:dateTime" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

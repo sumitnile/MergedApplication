@@ -1,0 +1,12 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam_BS" name="SD_insertRequestParam_BS-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="SD_insertRequestParam_BS.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam_BS"/>
+    <wsdl:binding name="SD_insertRequestParam_BS_ptt-binding" type="sd:SD_insertRequestParam_BS_ptt" xmlns:sd="http://xmlns.oracle.com/pcbpel/adapter/db/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam_BS">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="insert">
+            <soap:operation soapAction="insert"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

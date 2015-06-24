@@ -1,0 +1,11 @@
+<adapter-config name="SD_Payment_RecordCount_BS" adapter="db" wsdlLocation="SD_Payment_RecordCount_BS.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="SnapDeal_Dev_DB" location="eis/db/snap_erp_uat"/>
+  <endpoint-interaction portType="SD_Payment_RecordCount_BS_ptt" operation="SD_Payment_RecordCount_BS">
+    <interaction-spec className="oracle.tip.adapter.db.DBPureSQLInteractionSpec">
+      <property name="SqlString" value="select  count(*)  AS RecordCount from xxsd_seller_payments_detail_tl m where trunc(m.LAST_UPDATE_DATE)>=trunc(TO_DATE(#lastUpdated)) and m.RECORD_STATUS=#recordStatus"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

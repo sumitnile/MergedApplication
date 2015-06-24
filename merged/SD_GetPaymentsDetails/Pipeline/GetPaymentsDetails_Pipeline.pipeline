@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="SD_GetPaymentsDetails/Resources/SD_GetPaymentsDetails"/>
+            <con:binding>
+                <con:name>SD_GetPaymentsDetails_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/SD_PaymentPanel_App/SD_GetPaymentsDetails/SD_GetPaymentsDetails</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-a7d0215.5a2f6760.0.14dd6d4f640.N7fd6">
+            <con:stage id="_StageId-a7d0215.5a2f6760.0.14dd6d4f640.N7fd4" name="Java Callout For Date Format">
+                <con:context>
+                    <con2:userNsDecl prefix="get" namespace="http://www.getPaymentsDetails.org"/>
+                </con:context>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7f27</con2:id>
+                        <con1:case id="_BranchId-a7d021c.30bbc250.0.14e1adabbcd.N7f26">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:boolExpr operator="or">
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$body/get:GetPaymentsDetailsInput/get:lastUpdated</con2:leftPath>
+                                            <con2:rightPath>''</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$body/get:GetPaymentsDetailsInput/get:start</con2:leftPath>
+                                            <con2:rightPath>''</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$body/get:GetPaymentsDetailsInput/get:pageSize</con2:leftPath>
+                                            <con2:rightPath>''</con2:rightPath>
+                                        </con2:compExpr>
+                                    </con2:boolExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="temp">
+                                    <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7f22</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>xs:int(1)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:javaCallout varName="JavaOutput">
+                                <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fcd</con2:id>
+                                <con1:archive ref="SD_SettledTrxDetails/Jars/DateConversion"/>
+                                <con1:className>DateConvert</con1:className>
+                                <con1:method>public static java.lang.String convert(java.lang.String)</con1:method>
+                                <con1:expr>
+                                    <con2:xqueryText>fn:string($body/get:GetPaymentsDetailsInput/get:lastUpdated)</con2:xqueryText>
+                                </con1:expr>
+                                <con1:return-param-as-ref>false</con1:return-param-as-ref>
+                            </con1:javaCallout>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-a7d0215.5a2f6760.0.14dd6d4f640.N7fc2" name="Input Validation and Service Call">
+                <con:context>
+                    <con2:userNsDecl prefix="get" namespace="http://www.getPaymentsDetails.org"/>
+                </con:context>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fb5</con2:id>
+                        <con1:case id="_BranchId-a7d0215.5a2f6760.0.14dd6d4f640.N7fb4">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:boolExpr operator="or">
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>xs:int($temp)</con2:leftPath>
+                                            <con2:rightPath>xs:int(1)</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator="=">
+                                            <con2:leftPath>$JavaOutput</con2:leftPath>
+                                            <con2:rightPath>'BlankNode'</con2:rightPath>
+                                        </con2:compExpr>
+                                    </con2:boolExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="Flag">
+                                    <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7f1c</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>xs:int(2)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-a7d021c.30bbc250.0.14e1adabbcd.N7f20">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:boolExpr operator="and">
+                                        <con2:compExpr operator="&lt;=">
+                                            <con2:leftPath>$body/get:GetPaymentsDetailsInput/get:lastUpdated</con2:leftPath>
+                                            <con2:rightPath>fn:current-dateTime()</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator=">">
+                                            <con2:leftPath>$body/get:GetPaymentsDetailsInput/get:start</con2:leftPath>
+                                            <con2:rightPath>xs:decimal(0)</con2:rightPath>
+                                        </con2:compExpr>
+                                        <con2:compExpr operator=">">
+                                            <con2:leftPath>$body/get:GetPaymentsDetailsInput/get:pageSize</con2:leftPath>
+                                            <con2:rightPath>xs:decimal(0)</con2:rightPath>
+                                        </con2:compExpr>
+                                    </con2:boolExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="recordCount">
+                                    <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fc6</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>$body/get:GetPaymentsDetailsInput/get:start+$body/get:GetPaymentsDetailsInput/get:pageSize</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                                <con1:wsCallout>
+                                    <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7ee2</con2:id>
+                                    <con1:service ref="SD_GetPaymentsDetails/BusinessService/GetPaymentsDetailsBS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                    <con1:operation>GetPaymentsDetailsBS</con1:operation>
+                                    <con1:request>
+                                        <con1:body wrapped="false">BS_INPUT</con1:body>
+                                    </con1:request>
+                                    <con1:response>
+                                        <con1:body wrapped="false">BS_OUTPUT</con1:body>
+                                    </con1:response>
+                                    <con1:requestTransform>
+                                        <con1:assign varName="BS_INPUT">
+                                            <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fc3</con2:id>
+                                            <con1:expr>
+                                                <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<get:GetPaymentsDetailsBSInput xmlns:get="http://xmlns.oracle.com/pcbpel/adapter/db/GetPaymentsDetailsBS">
+<get:lastUpdated>',$JavaOutput,'</get:lastUpdated><get:start>',$body/get:GetPaymentsDetailsInput/get:start,'</get:start><get:pageSize>',$recordCount,'</get:pageSize></get:GetPaymentsDetailsBSInput>'))]]></con2:xqueryText>
+                                            </con1:expr>
+                                        </con1:assign>
+                                    </con1:requestTransform>
+                                    <con1:responseTransform/>
+                                </con1:wsCallout>
+                                <con1:assign varName="Flag">
+                                    <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fb1</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>xs:int(1)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:ifThenElse>
+                                <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fa7</con2:id>
+                                <con1:case id="_BranchId-a7d0215.5a2f6760.0.14dd6d4f640.N7fa6">
+                                    <con1:condition>
+                                        <con2:xqueryConditionExpr>
+                                            <con2:compExpr operator=">">
+                                                <con2:leftPath>xs:dateTime($body/get:GetPaymentsDetailsInput/get:lastUpdated)</con2:leftPath>
+                                                <con2:rightPath>fn:current-dateTime()</con2:rightPath>
+                                            </con2:compExpr>
+                                        </con2:xqueryConditionExpr>
+                                    </con1:condition>
+                                    <con1:actions>
+                                        <con1:assign varName="Flag">
+                                            <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fa3</con2:id>
+                                            <con1:expr>
+                                                <con2:xqueryText>xs:int(3)</con2:xqueryText>
+                                            </con1:expr>
+                                        </con1:assign>
+                                    </con1:actions>
+                                </con1:case>
+                                <con1:default>
+                                    <con1:assign varName="Flag">
+                                        <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7fa0</con2:id>
+                                        <con1:expr>
+                                            <con2:xqueryText>xs:int(4)</con2:xqueryText>
+                                        </con1:expr>
+                                    </con1:assign>
+                                </con1:default>
+                            </con1:ifThenElse>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a7d0215.5a2f6760.0.14dd6d4f640.N7fd5">
+            <con:stage id="_StageId-a7d0215.5a2f6760.0.14dd6d4f640.N7fd3" name="Response">
+                <con:context/>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7f99</con2:id>
+                        <con1:case id="_BranchId-a7d0215.5a2f6760.0.14dd6d4f640.N7f98">
+                            <con1:condition>
+                                <con2:xqueryText>xs:int($Flag)=xs:int(2)</con2:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace contents-only="true" varName="body">
+                                    <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7f17</con2:id>
+                                    <con1:location>
+                                        <con2:xpathText>.</con2:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<tns:GetPaymentsDetails_OutputCollection xmlns:tns="http://www.getPaymentsDetails.org">
+<tns:GetPaymentsDetailsOutput><tns:error>',fn:string('All three Fields are manadatory'),'</tns:error></tns:GetPaymentsDetailsOutput></tns:GetPaymentsDetails_OutputCollection>'))]]></con2:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-a7d0215.5a2f6760.0.14dd6d4f640.N7f96">
+                            <con1:condition>
+                                <con2:xqueryText>xs:int($Flag)=xs:int(3)</con2:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace varName="body" contents-only="true">
+                                    <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7eaa</con2:id>
+                                    <con1:location>
+                                        <con2:xpathText>.</con2:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<tns:GetPaymentsDetails_OutputCollection xmlns:tns="http://www.getPaymentsDetails.org">
+<tns:GetPaymentsDetailsOutput><tns:error>',fn:string('Value of lastUpdated CanNot be Greater then Current Date'),'</tns:error></tns:GetPaymentsDetailsOutput></tns:GetPaymentsDetails_OutputCollection>'))]]></con2:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:case id="_BranchId-a7d021c.30bbc250.0.14e1adabbcd.N7f1a">
+                            <con1:condition>
+                                <con2:xqueryConditionExpr>
+                                    <con2:compExpr operator="=">
+                                        <con2:leftPath>xs:int($Flag)</con2:leftPath>
+                                        <con2:rightPath>xs:int(4)</con2:rightPath>
+                                    </con2:compExpr>
+                                </con2:xqueryConditionExpr>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:replace varName="body" contents-only="true">
+                                    <con2:id>_ActionId-a7d021c.30bbc250.0.14e1adabbcd.N7ea7</con2:id>
+                                    <con1:location>
+                                        <con2:xpathText>.</con2:xpathText>
+                                    </con1:location>
+                                    <con1:expr>
+                                        <con2:xqueryText><![CDATA[fn-bea:inlinedXML(concat('<tns:GetPaymentsDetails_OutputCollection xmlns:tns="http://www.getPaymentsDetails.org">
+<tns:GetPaymentsDetailsOutput><tns:error>',fn:string('start and pageSize should be greater then zero'),'</tns:error></tns:GetPaymentsDetailsOutput></tns:GetPaymentsDetails_OutputCollection>'))]]></con2:xqueryText>
+                                    </con1:expr>
+                                </con1:replace>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7f8d</con2:id>
+                                <con1:location>
+                                    <con2:xpathText>.</con2:xpathText>
+                                </con1:location>
+                                <con1:expr>
+                                    <con2:xqueryText>$BS_OUTPUT</con2:xqueryText>
+                                </con1:expr>
+                            </con1:replace>
+                            <con1:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a7d0215.5a2f6760.0.14dd6d4f640.N7f8a</con2:id>
+                                <con1:location>
+                                    <con2:xpathText>.</con2:xpathText>
+                                </con1:location>
+                                <con1:expr>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="SD_GetPaymentsDetails/XSL/SD_getPaymentsDetails_Output"/>
+                                        <con2:input>$body/*</con2:input>
+                                    </con2:xsltTransform>
+                                </con1:expr>
+                            </con1:replace>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode">
+                <con:request>request-a7d0215.5a2f6760.0.14dd6d4f640.N7fd6</con:request>
+                <con:response>response-a7d0215.5a2f6760.0.14dd6d4f640.N7fd5</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.RecordCount.org"
+            targetNamespace="http://www.RecordCount.org" elementFormDefault="qualified">
+  <xsd:complexType name="RecordCountCompInput">
+    <xsd:sequence>
+      <xsd:element name="processName" type="xsd:string"/>
+      <xsd:element name="recordStatus" type="xsd:string"/>
+      <xsd:element name="lastUpdated" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RecordCountCompOutput">
+    <xsd:sequence>
+      <xsd:element name="recordCount" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RecordCountInput" type="RecordCountCompInput"/>
+  <xsd:element name="RecordCountoutput" type="RecordCountCompOutput"/>
+</xsd:schema>

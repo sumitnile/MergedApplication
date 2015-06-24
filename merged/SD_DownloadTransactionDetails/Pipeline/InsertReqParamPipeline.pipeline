@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con4="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:description>This Pipeline is used for inserting all Incoming Request Prameter to xxsd.xxsd_txn_invoice_request table</con:description>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="SD_DownloadTransactionDetails/Resources/SD_insertRequestParam"/>
+            <con:binding>
+                <con:name>SD_insertRequestParam_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/SD_PaymentPanel_App/SD_DownloadTransactionDetails/SD_insertRequestParam</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-a7d021c.Na60da15.0.14e248f3ff6.N7fcd">
+            <con:stage id="_StageId-a7d021c.Na60da15.0.14e248f3ff6.N7fcb" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con3:route>
+                        <con2:id>_ActionId-a7d021c.Na60da15.0.14e248f3ff6.N7fc6</con2:id>
+                        <con3:service ref="SD_DownloadTransactionDetails/BusinessService/SD_insertRequestParam_BS" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con3:operation>insert</con3:operation>
+                        <con3:outboundTransform>
+                            <con4:replace varName="body" contents-only="true">
+                                <con2:id>_ActionId-a7d021c.Na60da15.0.14e248f3ff6.N7fc3</con2:id>
+                                <con4:location>
+                                    <con2:xpathText>.</con2:xpathText>
+                                </con4:location>
+                                <con4:expr>
+                                    <con2:xsltTransform>
+                                        <con2:resource ref="SD_DownloadTransactionDetails/XSL/SD_inputParam_mapping"/>
+                                        <con2:input>$body/*</con2:input>
+                                    </con2:xsltTransform>
+                                </con4:expr>
+                            </con4:replace>
+                        </con3:outboundTransform>
+                    </con3:route>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-a7d021c.Na60da15.0.14e248f3ff6.N7fcc">
+            <con:stage id="_StageId-a7d021c.Na60da15.0.14e248f3ff6.N7fca" name="ResponseStage">
+                <con:context/>
+                <con:actions>
+                    <con4:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-a7d021c.Na60da15.0.14e248f3ff6.N7fc0</con2:id>
+                        <con4:location>
+                            <con2:xpathText>.</con2:xpathText>
+                        </con4:location>
+                        <con4:expr>
+                            <con2:xqueryText>fn-bea:inlinedXML(concat('&lt;ins:insertParamResponse xmlns:ins="http://www.insertReqParam.org">
+&lt;ins:status>',fn:string('Success'),'&lt;/ins:status>&lt;/ins:insertParamResponse>'))</con2:xqueryText>
+                        </con4:expr>
+                    </con4:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode1">
+                <con:request>request-a7d021c.Na60da15.0.14e248f3ff6.N7fcd</con:request>
+                <con:response>response-a7d021c.Na60da15.0.14e248f3ff6.N7fcc</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

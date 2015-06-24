@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/SD_Unsettledtrx_RecordCount_BS" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/SD_Unsettledtrx_RecordCount_BS" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="SD_Unsettledtrx_RecordCount_BSInput" type="SD_Unsettledtrx_RecordCount_BSInput"/>
+   <xs:complexType name="SD_Unsettledtrx_RecordCount_BSInput">
+      <xs:sequence>
+         <xs:element name="lastUpdated" type="xs:string" nillable="true"/>
+         <xs:element name="recordStatus" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="SD_Unsettledtrx_RecordCount_BSOutput" type="SD_Unsettledtrx_RecordCount_BSOutput"/>
+   <xs:complexType name="SD_Unsettledtrx_RecordCount_BSOutput">
+      <xs:sequence>
+         <xs:element name="RecordCount" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
